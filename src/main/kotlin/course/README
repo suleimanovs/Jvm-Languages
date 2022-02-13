@@ -1,0 +1,7 @@
+
+
+        В этой разделе обьясняеться работа abstract, interface, smart-cast
+
+        Seller ,Programmer, Director - они все подклассы абстрактного класса Worker
+
+        Cleaner - здесь интерфейс
