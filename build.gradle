@@ -14,10 +14,10 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation 'junit:junit:4.13.2'
-    // https://mvnrepository.com/artifact/androidx.activity/activity-ktx
     implementation group: 'androidx.activity', name: 'activity-ktx', version: '1.0.0-alpha01'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0')
 }
 
 test {

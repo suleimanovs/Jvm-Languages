@@ -11,6 +11,8 @@ public class Char {
          */
         char ch1 = 'Y';
         char ch2 = 89;
+        char ch3 = '\u0555';
+
 
         //обе переменные содержат одно и тоже значение
         System.out.println("ch1: " + ch1 + " ch2: " + ch2);

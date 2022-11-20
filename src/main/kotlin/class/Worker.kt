@@ -1,4 +1,4 @@
-package project.course.oop.`class`
+package `class`
 
 abstract class Worker(val name:String, age:Int){
 

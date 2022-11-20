@@ -1,10 +1,9 @@
-package project.course.oop.`class`
+package `class`
 
-class Director(name: String,age: Int): Worker(name,age){
+class Director(name: String, age: Int) : Worker(name, age) {
 
     override fun work() {
         println("Управляю процессом")
     }
-
 
 }

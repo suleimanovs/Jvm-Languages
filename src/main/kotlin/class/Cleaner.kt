@@ -1,8 +1,5 @@
-package project.course.oop.`class`
+package `class`
 
-/**
- * Created by user on 18:48
- */
 
 /**
  * Interface - не имеет конструктора, не может иметь экземпляра
