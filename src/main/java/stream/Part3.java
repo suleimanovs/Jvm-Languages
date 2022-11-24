@@ -1,4 +1,4 @@
-package stream_api;
+package stream;
 
 import java.util.ArrayList;
 import java.util.Comparator;

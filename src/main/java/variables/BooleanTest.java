@@ -3,7 +3,7 @@ package variables;
 /**
  * Created by Osman on 11:12 AM
  */
-public class Boolean {
+public class BooleanTest {
 
     public static void main(String[] args) {
         /**

@@ -1,4 +1,4 @@
-package stream_api;
+package stream;
 
 /**
  * Created by Osman on 11:02

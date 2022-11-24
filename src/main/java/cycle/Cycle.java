@@ -1,4 +1,4 @@
-package otherUsefulThing;
+package cycle;
 
 /**
  * Created by Osman on 11:17 AM

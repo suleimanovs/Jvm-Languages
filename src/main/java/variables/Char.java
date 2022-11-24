@@ -5,6 +5,7 @@ package variables;
  */
 public class Char {
 
+
     public static void main(String[] args) {
         /**
          * char - символьный тип, символов Таблица ASCII - каждому символу соответствует определенный код(число)

@@ -1,4 +1,4 @@
-package stacktrace;
+package exception.stacktrace;
 
 /**
  * Created by osmanboy on 3/2/2022
