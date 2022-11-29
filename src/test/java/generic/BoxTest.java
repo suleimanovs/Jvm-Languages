@@ -1,5 +1,6 @@
 package generic;
 
+import generics.Box;
 import org.junit.Before;
 import org.junit.Test;
 
