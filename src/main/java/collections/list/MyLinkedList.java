@@ -1,6 +1,6 @@
 package collections.list;
 
-import collections.queue.CarQueue;
+import collections.queue.MyQueue;
 
 import java.util.Iterator;
 
@@ -13,7 +13,7 @@ import java.util.Iterator;
  * <p>
  * подробнее см. [AlgorithmsInfo]
  */
-public class CarLinkedList<T> implements CarList<T>, CarQueue<T> {
+public class MyLinkedList<T> implements MyList<T>, MyQueue<T> {
 
     private Node first;
     private Node last;

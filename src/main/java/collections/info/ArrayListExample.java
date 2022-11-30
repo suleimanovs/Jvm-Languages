@@ -1,7 +1,7 @@
 package collections.info;
 
-import collections.CarCollection;
-import collections.list.CarArrayList;
+import collections.MyCollection;
+import collections.list.MyArrayList;
 import collections.model.Car;
 
 /**
@@ -10,7 +10,7 @@ import collections.model.Car;
 public class ArrayListExample  {
     public static void main(String[] args) {
 
-     CarCollection carList = new CarArrayList();
+     MyCollection carList = new MyArrayList();
 
         for (int i = 0; i < 100; i++) {
             carList.add(new Car("Brand" + i, i));

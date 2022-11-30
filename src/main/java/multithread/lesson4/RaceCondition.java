@@ -21,7 +21,7 @@ public class RaceCondition {
         Counter counter = new Counter();
 
         Thread decrementThread = new Thread(() -> {
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 1000000; i++) {
                 number--;      // sample don't synchronized variable
                 counter.dec(); // atomic integer
                 dec(); // synchronized method
@@ -30,7 +30,7 @@ public class RaceCondition {
 
 
         Thread incrementThread = new Thread(() -> {
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 1000000; i++) {
                 number++;// sample don't synchronized variable
                 counter.increment();// atomic integer
                 inc(); // synchronized method
@@ -103,7 +103,8 @@ class Counter {
      * Тем самым, мы избегаем состояние гонки.
      * Это просто блочки над уже существующими типами(int, double, long). Это еще один способ как решить состояние гонки.
      *
-     * Но даже atomic-и не являются потока безопасными
+     * AtomicInteger – это класс, который предоставляет возможность работать с целочисленным значением int,
+     * используя атомарные операции
      */
     private final AtomicInteger value = new AtomicInteger();
 

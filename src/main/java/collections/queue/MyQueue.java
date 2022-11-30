@@ -1,11 +1,11 @@
 package collections.queue;
 
-import collections.CarCollection;
+import collections.MyCollection;
 
 /**
  * Created by Osman on 7:09 PM
  */
-public interface CarQueue<T> extends CarCollection<T> {
+public interface MyQueue<T> extends MyCollection<T> {
 
     boolean add(T car);
 

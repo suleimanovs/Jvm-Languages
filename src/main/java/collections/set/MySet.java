@@ -1,11 +1,11 @@
 package collections.set;
 
-import collections.CarCollection;
+import collections.MyCollection;
 
 /**
  * Created by Osman on 11:50 AM
  */
-public interface CarSet<T> extends CarCollection<T> {
+public interface MySet<T> extends MyCollection<T> {
 
     boolean contains(T car);
 

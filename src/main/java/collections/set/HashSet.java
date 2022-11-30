@@ -7,7 +7,7 @@ import java.util.Iterator;
 /**
  * Created by Osman on 2:27 PM
  */
-public class HashSet<T> implements CarSet<T> {
+public class HashSet<T> implements MySet<T> {
 
     private static final int INITIAL_SIZE = 16;
     private static final double LOAD_FACTOR = 0.75;

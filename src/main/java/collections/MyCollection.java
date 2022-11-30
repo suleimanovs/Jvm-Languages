@@ -3,7 +3,7 @@ package collections;
 /**
  * Created by Osman on 11:57 AM
  */
-public interface CarCollection<T> extends Iterable<T> {
+public interface MyCollection<T> extends Iterable<T> {
     boolean add(T car);
 
     boolean remove(T car);

@@ -17,45 +17,45 @@ import java.util.Iterator;
  * + @add(index) - Вставка элемента в конец списка - O(1)
  * - @remove - Удаление элемента - O(N)
  * - @add(element,index) - Вставка элемента в конец списка - O(N)
- * - Внутренний размер массива не изменяется при удалении элментов, может возникнуть утечка памяти
+ * - Внутренний размер массива не изменяется при удалении элементов, может возникнуть утечка памяти
  * <p>
  * подробнее см. [AlgorithmsInfo]
  */
-public class CarArrayList<T> implements CarList<T> {
+public class MyArrayList<E> implements MyList<E> {
 
     private Object[] array = new Object[10];
     private int size = 0;
 
     @Override
-    public T get(int index) {
+    public E get(int index) {
         checkIndex(index);
-        return (T) array[index];
+        return (E) array[index];
     }
 
     @Override
-    public boolean add(T car) {
+    public boolean add(E element) {
         increaseArray();
-        array[size] = car;
+        array[size] = element;
         size++;
         return true;
     }
 
     @Override
-    public boolean add(T car, int index) {
+    public boolean add(E element, int index) {
         increaseArray();
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
         System.arraycopy(array, index, array, index + 1, size - index);
-        array[index] = car;
+        array[index] = element;
         size++;
         return true;
     }
 
     @Override
-    public boolean remove(T car) {
+    public boolean remove(E element) {
         for (int i = 0; i < size; i++) {
-            if (array[i].equals(car)) {
+            if (array[i].equals(element)) {
                 return removeAt(i);
             }
         }
@@ -63,9 +63,9 @@ public class CarArrayList<T> implements CarList<T> {
     }
 
     @Override
-    public boolean contains(T car) {
+    public boolean contains(E element) {
         for (int i = 0; i < size; i++) {
-            if (array[i].equals(car)) {
+            if (array[i].equals(element)) {
                 return true;
             }
         }
@@ -92,8 +92,8 @@ public class CarArrayList<T> implements CarList<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return new Iterator<T>() {
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
 
             int index = 0;
 
@@ -103,8 +103,8 @@ public class CarArrayList<T> implements CarList<T> {
             }
 
             @Override
-            public T next() {
-                return (T) array[index++];
+            public E next() {
+                return (E) array[index++];
             }
         };
     }
