@@ -14,7 +14,7 @@ public class MyListTest {
 
     @Before
     public void setUp() throws Exception {
-        myList = new <>();
+        myList = new MyLinkedList<>();
         for (int i = 0; i < 100; i++) {
             myList.add(new Car("Brand" + i, i));
         }

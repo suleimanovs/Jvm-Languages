@@ -9,12 +9,12 @@ import java.util.Set;
  * Created by Osman on 6:47 PM
  */
 public class MyHashMap<K, V> implements CarMap<K, V> {
+
     private static final int INITIAL_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
 
     private Object[] array = new Object[INITIAL_CAPACITY];
     private int size = 0;
-
 
     @Override
     public void put(K key, V value) {
@@ -74,6 +74,7 @@ public class MyHashMap<K, V> implements CarMap<K, V> {
 
             entry = entry.next;
         }
+
         return null;
     }
 

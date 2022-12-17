@@ -1,4 +1,4 @@
-package project.interview
+package interview
 
 
 /**

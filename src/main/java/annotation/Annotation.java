@@ -58,12 +58,12 @@ class iPhone {
 }
 
 public class Annotation {
+
     public static void main(String[] args) {
 
         /**
          * попробуем прочесть данные из классов ою аннотаций с помощью реффлексий
          */
-
         Class<Xiaomi> xiaomiClass = Xiaomi.class;
         SmartPhone xiaomiAnnotation = xiaomiClass.getAnnotation(SmartPhone.class);
         System.out.println("OS of Xiaomi: " + xiaomiAnnotation.OS());

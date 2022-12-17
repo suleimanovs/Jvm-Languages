@@ -8,20 +8,30 @@ import java.io.IOException;
  */
 public class FileExample {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        File directory = new File("folder1/folder2/folder3");
+        /**
+         * Класс File позволяет управлять информацией оmфайлах и директориях.
+         * File file = new File (“test1.txt”);
+         * getAbsolutePath isAbsolute isDirectory exists
+         * createNewFile mkdir length delete listFiles
+         * isHidden canRead canWrite canExecute
+         */
+        var file = new File("file/sub/package/","some.txt");
+        file.createNewFile();
+        file.mkdirs();
+        System.out.println(file.canWrite());;
+        System.out.println(file.canRead());;
+
+        File directory = new File("file/sub/person");
+        directory.mkdirs();
+
         File file1 = new File(directory.getPath() + "/Osman.txt");
         File file2 = new File(directory.getPath() + "/Sara.txt");
         File file3 = new File(directory.getPath() + "/Omar.txt");
-        try {
-            directory.mkdirs();
-            file1.createNewFile();
-            file2.createNewFile();
-            file3.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        file1.createNewFile();
+        file2.createNewFile();
+        file3.createNewFile();
 
         File[] files = directory.listFiles((dir, name) -> name.contains("S") || name.contains("s"));
         for (File f : files) {

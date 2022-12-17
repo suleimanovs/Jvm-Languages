@@ -17,6 +17,7 @@ public class SemaphoreExample {
         new Person("Ivan",semaphore );
         new Person("Marsel",semaphore );
         new Person("Nikita",semaphore );
+        
 
     }
 
@@ -38,7 +39,7 @@ class Person extends Thread {
 
         try {
             System.out.println(name + " ждет...");
-            callBox.acquire();
+            callBox.acquire(); // уменьшаем счетчик на единицу
             System.out.println(name + " пользуется телефонной будкой");
             sleep(2000);
             System.out.println(name + " завершил звонок");
@@ -46,6 +47,7 @@ class Person extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            // Увеличиваем счетчик на единицу. Рекомендуется всегда делать в блоке finally
             callBox.release();
         }
 
