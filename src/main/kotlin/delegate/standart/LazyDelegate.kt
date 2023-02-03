@@ -1,5 +1,7 @@
 package delegate.standart
 
+import kotlin.reflect.KProperty
+
 /**
  * Created by osmanboy on 2/12/2022
  */
@@ -12,7 +14,9 @@ fun main() {
      * переданную и запоминает результат. Последующие вызовы, чтобы просто вернуть запомненный результат.
      * Функция lazy из стандартной библиотеки позволяет просто реализовать отложенную инициализацию свойств.
      *
-     * Функция [lazy] только с лямбдой по умолчанию является поток безопасным.
+     * Функция [lazy] только с лямбдой по умолчанию является поток безопасным. Функция Lazy является onlyRead,
+     * то есть объявить его можно только для val переменных, это значит что у него есть только [Lazy.getValue] но
+     * не setValue
      *
      */
     val car = Car()
@@ -29,20 +33,28 @@ fun main() {
 class Car {
 
     //Код в лямбде будет вызван только один раз
-    val name by lazy {
+    val age by lazy {
+        println("initial")
+        12
+    }
+
+    //Код в лямбде будет вызван только один раз
+    val name by ownlazy {
         println("initial")
         "BMW"
     }
+
 }
 
 
-internal object UNINITIALIZED_VALUE
+class OwnLazyImpl<out T>(private var initializer: (() -> T)?) {
 
-class OwnLazyImpl<out T>(private var initializer: (() -> T)?) : Lazy<T> {
+    internal object UNINITIALIZED_VALUE
+
 
     private var _value: Any? = UNINITIALIZED_VALUE
 
-    override val value: T
+    val value: T
         get() {
             if (_value === UNINITIALIZED_VALUE) {
                 _value = initializer!!()
@@ -51,9 +63,10 @@ class OwnLazyImpl<out T>(private var initializer: (() -> T)?) : Lazy<T> {
             return _value as T
         }
 
-    override fun isInitialized(): Boolean = _value !== UNINITIALIZED_VALUE
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        return value
+    }
 
-    override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 
 }
 

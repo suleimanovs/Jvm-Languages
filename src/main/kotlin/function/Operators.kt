@@ -1,6 +1,6 @@
-package classes
+package function
 
-class Operations(val value: Int) {
+class Operators(val value: Int) {
 
     val TAG = 14
 
@@ -12,17 +12,30 @@ class Operations(val value: Int) {
     operator fun component2() = TAG
 
 
+    /**
+     * Kotlin позволит нам использовать оператор "+" и тогда будет использована функция [plus],
+     * после компиляций везде где использованы символы операторов будут заменены на соответствующие функций.
+     *
+     * <pre>{@code
+     *  val o1 = Operators(11)
+     *  val o2 = Operators(22)
+     *  val result = o1 + o2  // 33
+     * }</pre>
+     *
+     * после компиляций будет так:
+     * val result = o1.plus(o2)
+     */
     // +
-    operator fun plus(other: Operations) = Operations(value + other.value)
+    operator fun plus(other: Operators) = Operators(value + other.value)
 
     // -
-    operator fun minus(other: Operations) = Operations(value - other.value)
+    operator fun minus(other: Operators) = Operators(value - other.value)
 
     //*/
-    operator fun times(other: Operations) = Operations(value * other.value)
+    operator fun times(other: Operators) = Operators(value * other.value)
 
     // /
-    operator fun div(other: Operations) = Operations(value / other.value)
+    operator fun div(other: Operators) = Operators(value / other.value)
 
     // () //можно вызвать класс как функцию
     operator fun invoke(s: String, d: Double) = println("invoke")
@@ -34,12 +47,12 @@ class Operations(val value: Int) {
     operator fun get(i: Int) = i * value
 
     // >
-    operator fun compareTo(obj: Operations): Int {
+    operator fun compareTo(obj: Operators): Int {
         return value.compareTo(obj.value)
     }
 
     // in
-    operator fun contains(o: Operations): Boolean {
+    operator fun contains(o: Operators): Boolean {
         return o.value in 0..value
     }
 
@@ -49,7 +62,7 @@ class Operations(val value: Int) {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Operations
+        other as Operators
 
         if (value != other.value) return false
 

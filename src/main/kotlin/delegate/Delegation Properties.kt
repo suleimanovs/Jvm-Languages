@@ -19,6 +19,8 @@ class User {
      * при вызове [setter] для свойства [name] будет вызван метод [Delegate.setValue]
      */
     var name: String by Delegate()
+
+//    var age: Int by delegateParametrized()
 }
 
 /**
@@ -40,4 +42,19 @@ class Delegate {
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
         println("$value has been assigned to '${property.name}' in $thisRef.")
     }
+
 }
+
+class DelegateParametrized<T> {
+
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        return thisRef as T
+    }
+
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+        println("$value has been assigned to '${property.name}' in $thisRef.")
+    }
+
+}
+
+fun <T> delegateParametrized() = DelegateParametrized<T>()
