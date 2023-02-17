@@ -1,8 +1,9 @@
 package function
 
-class Operators(val value: Int) {
+class Operators(var value: Int) {
 
     val TAG = 14
+    val array = intArrayOf(1, 2, 4)
 
     /**
      * Теперь объекты данного класса поддерживают мульти декларацию. То есть мы можем так:
@@ -31,6 +32,13 @@ class Operators(val value: Int) {
     // -
     operator fun minus(other: Operators) = Operators(value - other.value)
 
+
+    // ++
+    operator fun dec() = Operators(value + 1)
+
+    // --
+    operator fun inc() = Operators(value - 1)
+
     //*/
     operator fun times(other: Operators) = Operators(value * other.value)
 
@@ -45,6 +53,11 @@ class Operators(val value: Int) {
 
     // [12]
     operator fun get(i: Int) = i * value
+
+    // [0] = 15
+    operator fun set(i: Int, v: Int) {
+        array[i] = v
+    }
 
     // >
     operator fun compareTo(obj: Operators): Int {
