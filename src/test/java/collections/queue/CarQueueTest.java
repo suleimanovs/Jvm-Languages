@@ -1,6 +1,6 @@
 package collections.queue;
 
-import collections.list.CarLinkedList;
+import collections.list.MyLinkedList;
 import collections.model.Car;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +12,11 @@ import static org.junit.Assert.assertEquals;
  */
 public class CarQueueTest {
 
-    CarQueue<Car> carQueue;
+    MyQueue<Car> carQueue;
 
     @Before
     public void setUp() throws Exception {
-        carQueue = new CarLinkedList<Car>();
+        carQueue = new MyLinkedList<Car>();
         for (int i = 0; i < 10; i++) {
             carQueue.add(new Car("Brand" + i, i));
         }

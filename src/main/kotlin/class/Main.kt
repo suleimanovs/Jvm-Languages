@@ -1,7 +1,7 @@
 package `class`
 
 import project.course.oop.*
-import project.course.oop.`class`.*
+
 
 /**
  * @abstract - создать экземпляры абстрактного класса не получиться,

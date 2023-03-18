@@ -66,7 +66,7 @@ public class PrimitiveVariables {
          * equals подробнее в см HashcodeEquals.java.
          * Но для этого необходимо его переопределить что бы она сравнивала не ссылки а значения полей
          * @Ссылочные типы хранять биты описывающие способ получить обьект в куче(5,true,'A').Другими словами
-         * они хранять в себе только адреса, а сами обьекты храняться в Stack
+         * они хранять в себе только адреса, а сами обьекты храняться в Heap
          * Классы, интерфейсы, списки тоже являются ссылочными типами
          */
 
@@ -89,18 +89,3 @@ public class PrimitiveVariables {
 
     }
 }
-
-
-
-
-/*    int days = 5000;
-    int year = days / 365;
-    int month = (days % 365) / 31;
-    int week = days / 365 % 31 / 7;
-    int day = days % 365 % 31;
-
-
-        System.out.println("year " + year);
-                System.out.println("month " + month);
-                System.out.println("week " + week);
-                System.out.println("day " + day);*/

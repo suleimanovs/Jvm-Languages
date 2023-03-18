@@ -1,7 +1,7 @@
 package course
 
-import project.course.oop.`class`.Programmer
-import project.course.oop.`class`.Worker
+import `class`.Programmer
+import `class`.Worker
 
 /**
  * Created by user on 20:06

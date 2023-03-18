@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  */
 public class CarSetTest {
 
-    private CarSet<Car> carSet;
+    private MySet<Car> carSet;
 
     @Before
     public void setUp()  {

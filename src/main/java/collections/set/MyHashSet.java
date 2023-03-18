@@ -1,51 +1,56 @@
 package collections.set;
 
-import org.jetbrains.annotations.NotNull;
+/**
+ * Created by Osman on 12:10 PM
+ */
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Created by Osman on 14:42
+ * В основе HashSet лежить хэш - таблица
  */
-public class MyHashSet<T> implements CarSet<T> {
-
-    Object object = new Object();
-    Map<T, Object> collection = new HashMap<>();
+public class MyHashSet<T> implements MySet<T> {
 
 
-    @Override
-    public boolean contains(T car) {
+    private final Map<T, Object> map = new HashMap<>();
+    private final Object object = new Object();
 
-        return collection.containsKey(car);
-    }
 
     @Override
     public boolean add(T car) {
-        return collection.put(car, object) == null;
-
+        if (map.containsKey(car)) {
+            return false;
+        }
+        map.put(car, object);
+        return true;
     }
 
     @Override
     public boolean remove(T car) {
-        return collection.remove(car) == object;
+        Object removed = map.remove(car);
+        return removed != null;
     }
 
     @Override
-    public void clear() {
-        collection.clear();
+    public boolean contains(T car) {
+        return map.containsKey(car);
     }
 
     @Override
     public int size() {
-        return collection.size();
+        return map.size();
     }
 
-    @NotNull
+    @Override
+    public void clear() {
+        map.clear();
+    }
+
     @Override
     public Iterator<T> iterator() {
-        return collection.keySet().iterator();
+        return map.keySet().iterator();
     }
 
 

@@ -16,7 +16,7 @@ public class JavaDocDemo {
      * {@value }
      * @param integer нечего не делает.
      * @return инкрементит значение
-     * @throws Exception не выдаються
+     * @throws Exception не выдаются
      */
    public int foo(int integer){
         System.out.println(integer);
@@ -24,11 +24,11 @@ public class JavaDocDemo {
     }
 
     /**
-     * @return всегда возращает 0;
-     * @deprecated эту функцию принято считать уставревшим.
-     * вместо этого, используйте : {@link JavaDocDemo#foo(int)}
-     * Позже стало принято что устаревшие програмные сущности так же
-     * должны быть помечены антоацией @Deprecated
+     * @return всегда возвращает 0;
+     * @deprecated Эту функцию принято считать уставревшим.
+     * Вместо этого, используйте: {@link JavaDocDemo#foo(int)}
+     * Позже стало принято, что устаревшие программные сущности так же
+     * должны быть помечены аннотацией @Deprecated
      */
     @Deprecated
     public int fo(){

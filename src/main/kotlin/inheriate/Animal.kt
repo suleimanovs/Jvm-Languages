@@ -1,4 +1,4 @@
-package project.course.oop.наследование
+package inheriate
 
 /**
  * @свойство  - пременные внутри класса,

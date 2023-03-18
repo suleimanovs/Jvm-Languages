@@ -6,11 +6,15 @@ import java.util.concurrent.*;
 
 /**
  * Created by Osman on 2:06 PM
+ * Thread pool – это множество потоков, каждый из которых предназначен для выполнения той или иной задачи.
+ * В Java с thread pool-ами удобнее всего работать посредством ExecutorService
  */
 public class ExecutorServiceExample {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         /**
+         * Thread pool удобнее всего создавать, используя factory методы класса Executors:
+         *
          * {@link Executors#newFixedThreadPool} - пул потоков фиксированной длины, при его созданий мы сами указываем,
          * сколько потоков будет создано.
          *
@@ -27,6 +31,9 @@ public class ExecutorServiceExample {
 
             final int index = i;
 
+            /**
+             * Метод execute передаёт наше задание (task) в thread pool, где оно выполняется одним из потоков.
+             */
             //Runnable
             executorFixedThreadPool.execute(() -> {
                 System.out.println("Start-" + index);
@@ -41,14 +48,23 @@ public class ExecutorServiceExample {
         /**
          * Означает что как только все потоки выполнят свою работу, они должны завершиться.
          * По умолчанию потоки ждут нового сообщения. С этого момента в него больше нельзя передать новых задач.
+         * После выполнения метода shutdown ExecutorService понимает, что новых заданий больше не будет и, выполнив
+         * поступившие до этого задания, прекращает работу.
          */
         executorFixedThreadPool.shutdown();
+
+        /**
+         * Метод awaitTermination принуждает поток в котором он вызвался подождать до тех пор, пока не выполнится одно
+         * из двух событий: либо ExecutorService прекратит свою работу, либо пройдёт время, указанное в параметре
+         * метода awaitTermination
+         */
+        executorFixedThreadPool.awaitTermination(5,TimeUnit.SECONDS);
 
 
         /**
          * {@link Executors#newSingleThreadExecutor} - создает только один пул поток.
-         * Делаем его потоком демоном, передавая в качестве аргумента ThreadFactory .
-         * Тут мы сами  вручную создаем поток, каждый раз когда мы вызывем метод execute, все Runnable прилетят в
+         * Делаем его потоком демоном, передавая в качестве аргумента ThreadFactory.
+         * Тут мы сами вручную создаем поток, каждый раз когда мы вызываем метод execute, все Runnable прилетят в
          * метод newThread, и в этой функций мы сами обрабатываем поток.
          */
         ExecutorService executorService = Executors.newSingleThreadExecutor(new ThreadFactory() {
@@ -72,31 +88,6 @@ public class ExecutorServiceExample {
         });
 
 
-        /**
-         * метод {@link ExecutorService#submit(Callable)} делает тоже самое что и
-         * {@link ExecutorService#execute(Runnable)}, отличие в том что он в качестве параметра
-         * пртнтмает не реализацию Runnable, a Callable- этот интерфейс может что-то вернуть, для класса
-         * Future<T>
-         */
-        Future<String> futureName = executorService.submit(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                Thread.sleep(5000);
-                return "Osman Boy";
-            }
-
-        });
-
-        try {
-            /**
-             * Метод {@link Future#get()} делает почти тоже самое что и метод join().
-             * тоже останавливает поток, и дождеться завершения другова потока
-             */
-            String name = futureName.get();
-            System.out.println(name);
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
 
 
     }

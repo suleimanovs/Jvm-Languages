@@ -7,7 +7,7 @@ package stringformat;
 public class Main {
     public static void main(String[] args) {
         double random = Math.random();
-        String info = String.format("%1.2f%n",random);
+        String info = String.format("%1.2f",random);
         System.out.println(info);
     }
 }

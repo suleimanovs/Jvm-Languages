@@ -1,77 +1,44 @@
-package project.course.function
+package function
 
-fun main() {
-    /**
-     * [`Extension Function`] - функций рассщирений , которые позволяеют рассщирить любой класс и тип
-     * проверка на четность с помощью [Extensions]
-     * в [Extensions] для обращения к вызоваемому объекту нужно использовать [this]
-     * коротий способ следуюущего метода -   fun Int.validNumber2()= this % 2== 0
-     */
+import classes.Person
 
-    fun Int.validNumber(): Boolean {
-        return this % 2 == 0
-    }
+/**
+ * Функции-расширения, или свойства-расширения, вызываются так же, как обычные, но определяются не внутри класса,
+ * который расширяют, и не используют механизм наследования для добавления новых возможностей.
+ *
+ * В Java-версии байт-кода расширение Kotlin — это статический метод, который при компиляции для JVM принимает
+ * объект расширяемого класса в качестве первого аргумента
+ *
+ * Фактически функция-расширение - это самый обычный статический метод, которому в первом аргументе
+ * передается объект-приемник. Её вызов не предполагает создания объектов-адаптеров или других накладных
+ * расходов во время выполнения.
+ *
+ *
+ * Имя класса называется типом-получателем (receiver type); значение, для которого вызывается функция-расширение,
+ * называется объектом-получателем (receiver object).
+ */
 
-
-    /**
-     * проверка на простое число, число которое делиться без остатка на 1 и на себя
-     */
-    fun Int.checkSimple(): Boolean {
-        if (this <= 3) return true
-        for (i in 2 until this) if (this % i == 0) return false
-
-        return true
-    }
-
-
-    /**
-     * Здесь мы создали собственный with используя обобщение,
-     * вместо [T] и  [U] можно указать любую букву
-     */
-    fun <T , U> myWith(predicate: T , extension: T.() -> U): U {
-
-        return predicate.extension()
-    }
-
-    /*fun lister(list: MutableList<Int>, extend: MutableList<Int>.()-> MutableList<Int>){
-        list.extend()
-    }
-
-
-    lister(arrayListOf(1,3,4,5,6,7),({
-        this.reversed() as MutableList<Int>
-    }))*/
-
-
-    val prime = 13
-    println(prime.isPrime(::isPrm))
-
-
+fun Int.validNumber(): Boolean {
+    return this % 2 == 0
 }
 
 
 /**
-
- * функция repeat выполняет часть кода столько раз сколько указано
- * а так же я указал прамаетры по умолчанию
- * и вызвать его мы можем только для типа String, для других типов
- * не аоддерживается, даже для Any
-
- **/
-fun String.addEnthusiasm(count: Int = 1): String {
-    return this + "!".repeat(count)
+ * Так же доступны операторские функций расширения, не внося изменений в сам класс [Person]
+ * теперь объекты класса [Person] можно плюсовать использовав оператор "+" [Person.plus]
+ */
+operator fun Person.plus(person: Person): Person {
+    return Person(name + person.name)
 }
 
+/**
+ * Здесь мы создали собственный with используя обобщение,
+ * вместо [T] и  [U] можно указать любую букву
+ */
+fun <T, U> myWith(predicate: T, extension: T.() -> U): U {
 
-//возврашает последний элемент(рассширений функций)
-fun String.lastChar(): Char = this[length - 1]
-
-//возваращает последний элемент (рассширений свойтсва)
-val String.firstChar: Char
-    get() = get(length - 1)
-
-val isOdd:Int.()->Boolean = { this % 2 == 0 }
-val isEven:Int.()->Boolean= { this % 2 != 0 }
+    return predicate.extension()
+}
 
 
 /**
@@ -83,23 +50,19 @@ fun <T> T.easyPrint(): T {
 }
 
 
+val String.lastChar: Char
+    get() = get(length - 1)
+
+
 /**
  * тут в качестве возвращаемого не нужно указать Int
  * потому что get() и так возвращает тип Int
  * и это свойство расширения
  */
-val String.Count: Int
-    get() = count { "aeiouy".contains(it.toLowerCase()) }
-
-
-/**
- * тут приведение типа, если оно не null то вернуть его
- * а если null то вернуть default-ное значение
- */
-fun String?.stringNull(default: String = "Default") {
-    println(this ?: default)
-}
-
+val String.isLargeString: Boolean
+    get() {
+        return this.length >= 10
+    }
 
 /**
  * это функция замена к стандартным shuffled().first()
@@ -107,31 +70,3 @@ fun String?.stringNull(default: String = "Default") {
  * итерациями, по этому мы указали их суперип
  */
 fun <T> Iterable<T>.random(): T = this.shuffled().first()
-
-
-/**
- * и так, данное расширение  Int, делить каждое число на чисел из диопозона от (2 до нашего числа (не включая его))
- */
-
-fun isPrm(int: Int): Boolean {
-    (2 until int).map {
-        if (int % it == 0) {
-            return false
-        }
-    }
-    return true
-}
-
-fun Int.isPrime(count: Int.() -> Boolean): Boolean {
-    return count()
-}
-
-fun Int.isPrime(): Boolean {
-    (2 until this).map {
-        if (this % it == 0) {
-            return false //не простое
-        }
-    }
-    return true
-}
-
